@@ -1,0 +1,58 @@
+Part 1:
+
+A signal disposition is the action that a process takes when it recieves a specific signal.
+
+A signal handler is a function that handles a specific signal. It defines custom operations
+to be executed when it recieves a signal.
+
+The 5 dispositions
+
+1) terminate the process
+2) terminate the process and dump the core creating a core dump file
+3) ignore the signal and there is no effect
+4) stop/pause the process
+5) continure the process
+
+To programmatically send a signal to a process you can use kill either by code or command line.
+kill(pid, signal) sends the signal to the pid id, kill -signal 12345 sends the signal to 12345.
+
+
+SIGINT 
+-sent to process by terminal when user wants to interupt process (like cntrl c)
+-terminates the process
+-can be overwritten by a signal handler to allow for a custom termination
+
+SIGTERM
+-generic signal to terminate a process
+-terminates the process
+-same as SIGINT
+
+SIGUSR1
+-reserved for user defined purpose
+-terminate the process
+-can b overwritten
+
+SIGKILL
+-forcefully terminate process without the ability to be caught, blocked or ignored
+-terminate the process
+-cannot be overwritten
+
+SIGSTOP
+-used to pause a process and cannot be caught
+-pause the process
+-cannot be overwritten
+
+
+Part2:
+
+to kill the process while running open another command prompt and run
+ps aux | grep signal to get the number the run kill -SIGINT pid
+
+After modyfying the code and sending the kill the same way it doesnt exit 
+because I removed the exit in the signal handler
+
+SIGINT and cntrc c in this case didnt work but SIGKILL does
+
+Part3:
+
+
